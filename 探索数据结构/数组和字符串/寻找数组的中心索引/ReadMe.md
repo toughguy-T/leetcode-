@@ -52,3 +52,24 @@ java实现
         return index== nums.length? -1: index;
     }
 ```
+变量定义的太多，有些繁琐，看了评论中的做法，思路一致，但是利用求和的顺序可以少定义变量
+```
+public class CentralIndex {
+    public int pivotIndex(int[] nums) {
+        int preSum=0, sum=0, index=0;
+        for (int num : nums) {
+            sum += num;
+        }
+
+        while (index < nums.length) {
+            if (preSum *2 + nums[index] == sum) {
+                return index;
+
+            }
+            preSum += nums[index];
+            index ++;
+        }
+        return -1;
+    }
+}    
+```
